@@ -53,14 +53,14 @@ void save_acc_to_file(const char* filename, Account* head){      //Second functi
         Account temp = *current;    // "*" cauz we want to access the content inside the address that current ptr holds
         temp.next = NULL;         //we set it to NULL as we don't want to save older memory address
 
-        if(fwrite(&temp, sizeof(Account), 1, fp) != 1){
-            perror("Error writing accounts file");
-            break;
+        if(fwrite(&temp, sizeof(Account), 1, fp) != 1){     //fwrite writes into the file
+            perror("Error writing accounts file");        //checks for successful writing into file or prints error message
+            break;        //jumps to last error message
         }
-        current = current->next; 
+        current = current->next;      //for drifting into LL (advancing)
     }
 
-    if(fclose(fp)== EOF){
+    if(fclose(fp)== EOF){      //EOF stands for End Of File
             perror("Error closing accounts file");
         }
 }
