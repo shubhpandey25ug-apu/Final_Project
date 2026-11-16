@@ -1,7 +1,5 @@
 #include <stdio.h>
-
-#include "file_io.h"
-#include "list.h"
+#include "bank.h"
 
 
 Account* load_acc_from_file(const char* filename){   //First Function, does as its name
