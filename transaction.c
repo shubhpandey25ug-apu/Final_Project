@@ -1,4 +1,4 @@
-
+#include <stdio.h>
 #include <math.h>
 #include <stddef.h>
 #include "bank.h"

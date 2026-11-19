@@ -76,18 +76,50 @@ double read_double(const char *prompt)
     }
 }
 
+//Reads and validates account holder's name
 void read_string(const char *prompt, char *buffer, int size)
 {
-    printf("%s", prompt);
+    int i;
+    int valid;
+    int has_letter;
 
-    if (fgets(buffer, size, stdin) == NULL)
+    while (1)
     {
-        printf("Input error.\n");
-        buffer[0] = '\0';
-        return;
-    }
+        printf("%s", prompt);
 
-    buffer[strcspn(buffer, "\n")] = '\0';
+        if (fgets(buffer, size, stdin) == NULL)
+        {
+            printf("Input error.\n");
+            buffer[0] = '\0';
+            return;
+        }
+
+        // Remove newline
+        buffer[strcspn(buffer, "\n")] = '\0';
+
+        // VALIDATION
+        valid = 1;
+        has_letter = 0;
+
+        for (i = 0; buffer[i] != '\0'; i++)
+        {
+            if ((buffer[i] >= 'A' && buffer[i] <= 'Z') ||
+                (buffer[i] >= 'a' && buffer[i] <= 'z'))
+            {
+                has_letter = 1;
+            }
+            else if (buffer[i] != ' ')
+            {
+                valid = 0;
+                break;
+            }
+        }
+
+        if (valid && has_letter)
+            return;
+
+        printf("Invalid name! Use only English letters and spaces.\n");
+    }
 }
 
 void display_main_menu(void)

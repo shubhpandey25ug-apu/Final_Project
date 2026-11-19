@@ -14,11 +14,11 @@ Account *make_account(Account *head , char *name , int number , double balance){
         printf("Please try again ! \n");
         free(ptr);
     }
-    else if( number <=0 ){
-        printf("The entered account number  i.e %d is not correct! \n",number);
-        printf("Please try again ! \n");
-        free(ptr);
-    }
+    // else if( number <1 ){
+    //     printf("The entered account number  i.e %d is not correct! \n",number);
+    //     printf("Please try again ! \n");
+    //     free(ptr);
+    // }
     else if( balance <0 ){
         printf("The entered balance cannot  i.e %lf be saved in account! \n",balance);
         printf("Please try again ! \n");
@@ -43,11 +43,11 @@ Account *make_account(Account *head , char *name , int number , double balance){
         if(traverse_pointer->next==NULL){
             traverse_pointer->next=ptr;
             break;
-             }
+        }
         traverse_pointer=traverse_pointer->next;
-            }
+    }
      return ptr;   
-       }
+ }
     return NULL;
 }
 
@@ -63,7 +63,7 @@ Account  *search_at_random_position( Account *head ,int number ){
     return NULL;
 }
 
-Account  *change_account_status(Account *head ,int number  ){
+Account  *change_account_status(Account *head ,int number  ){ //for closing accounts
     Account *traverse_ptr=head;
     while(traverse_ptr!=NULL){
         if(traverse_ptr->account_number==number){

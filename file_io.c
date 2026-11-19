@@ -14,15 +14,10 @@ Account* load_acc_from_file(const char* filename){   //First Function, does as i
     Account temp;      //Defining a temporary struct var
 
     while(fread(&temp, sizeof(Account), 1, fp)== 1){       //The syntax is: fread(address, size, count, file_pointer);
-        Account* new_account = make_account(           //first contact with Sameer's function
-            tail,
-            temp.holder_name,
-            temp.account_number,
-            temp.balance
-        );
+        Account* new_account = make_account(tail, temp.holder_name, temp.account_number, temp.balance);
 
         if(new_account==NULL){      //If allocation/account creation fails
-            break;
+            break;  
         }
         if(head==NULL){            //Setting up first account
             head = new_account;
@@ -31,7 +26,7 @@ Account* load_acc_from_file(const char* filename){   //First Function, does as i
         tail->status = temp.status;
     }  
     
-    if(ferror(fp)){        //checks for the error
+        if(ferror(fp)){        //checks for the error
         perror("Error reading account file");   //prints the error statement
     }
     fclose(fp);           //closes the file that we opened using fopen
